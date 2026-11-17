@@ -1,6 +1,6 @@
 ## Cloudflare Worker setup
 
-The original page's launch handoff sends supported version selections to `/api/launch?version=...`. Deploy `worker.js` as a Cloudflare Worker and route `eag.afeonbooks.com/api/*` to it. Keep the existing page deployment serving `index.html` for `/`.
+`index.html` is a self-contained version picker with inline styles and a JS/WASM build selector for classic releases. Launching a game sends the selected version to `/api/launch?version=...`. Deploy `worker.js` as a Cloudflare Worker and route `eag.afeonbooks.com/api/*` to it. The static site can serve `index.html` on its own; no external assets are needed.
 
 Add these as Worker secrets in the Cloudflare dashboard (Worker > Settings > Variables and Secrets), not in `index.html` or source control:
 
