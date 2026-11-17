@@ -2,7 +2,14 @@
 
 The site stays as HTML. `worker.js` makes this a code Worker that serves the built page and signs private Backblaze download links. `wrangler.jsonc` routes `eag.afeonbooks.com/*` through this Worker, with `/api/*` handled by code. This avoids deploying an assets-only Worker.
 
-From the project directory, run:
+The build command must run before `wrangler deploy`, because it creates the `dist` folder referenced in `wrangler.jsonc`. For Cloudflare Workers Builds, set:
+
+- **Build command:** `npm run build`
+- **Deploy command:** `npx wrangler deploy`
+
+Alternatively, make the Cloudflare **Deploy command** `npm run deploy`, which runs both steps.
+
+For a local deployment, run:
 
 ```sh
 npm install
