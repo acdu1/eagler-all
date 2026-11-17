@@ -1,6 +1,6 @@
 ## Deploy to Cloudflare
 
-The site stays as HTML. `worker.js` makes this a code Worker that serves the built page and signs private Backblaze download links. `wrangler.jsonc` routes `eag.afeonbooks.com/*` through this Worker, with `/api/*` handled by code. This avoids deploying an assets-only Worker.
+The site stays as HTML. `worker.js` makes this a code Worker that serves the built page and signs private Backblaze download links. `/tmp` serves the Eaglercraft 1.8.8 WebAssembly client. `wrangler.jsonc` routes `eag.afeonbooks.com/*` through this Worker, with `/api/*` and `/tmp` handled by code. This avoids deploying an assets-only Worker.
 
 The build command must run before `wrangler deploy`, because it creates the `dist` folder referenced in `wrangler.jsonc`. For Cloudflare Workers Builds, set:
 

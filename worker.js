@@ -96,6 +96,12 @@ function response(message, status) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === "/tmp") {
+      if (request.method !== "GET" && request.method !== "HEAD") {
+        return response("Method not allowed", 405);
+      }
+      return env.ASSETS.fetch(new Request(new URL("/tmp.html", url), request));
+    }
     if (!url.pathname.startsWith("/api/")) {
       return env.ASSETS.fetch(request);
     }
@@ -112,7 +118,7 @@ export default {
       return response("Unknown version", 400);
     }
     if (!env.B2_KEY_ID || !env.B2_APPLICATION_KEY) {
-      return response("Backblaze credentials are not configured", 500);
+      return response("Storage credentials are not configured", 500);
     }
 
     const signedUrl = await createSignedUrl(fileName, env.B2_KEY_ID, env.B2_APPLICATION_KEY);
