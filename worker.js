@@ -100,7 +100,17 @@ export default {
       if (request.method !== "GET" && request.method !== "HEAD") {
         return response("Method not allowed", 405);
       }
-      return env.ASSETS.fetch(new Request(new URL("/tmp.html", url), request));
+      const asset = await env.ASSETS.fetch(new Request(new URL("/tmp", url), request));
+      if (!asset.ok) {
+        return asset;
+      }
+      const headers = new Headers(asset.headers);
+      headers.set("Content-Type", "text/html; charset=utf-8");
+      return new Response(asset.body, {
+        status: asset.status,
+        statusText: asset.statusText,
+        headers,
+      });
     }
     if (!url.pathname.startsWith("/api/")) {
       return env.ASSETS.fetch(request);
