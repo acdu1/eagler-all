@@ -9,34 +9,23 @@
   <style>
     :root {
       color-scheme: dark;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
       color: #f3f3ef;
       background: #1b1e1d;
-      font-synthesis: none;
-      text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased;
       --muted: #b0b4b1;
       --line: #3a403d;
       --accent: #f2a65a;
-      --surface: #252a28;
     }
 
     * { box-sizing: border-box; }
-
     body {
       min-width: 320px;
       min-height: 100vh;
       margin: 0;
-      background:
-        radial-gradient(ellipse at 18% 0%, rgb(118 132 119 / 16%), transparent 34rem),
-        #1b1e1d;
+      background: radial-gradient(ellipse at 18% 0%, rgb(118 132 119 / 16%), transparent 34rem), #1b1e1d;
     }
-
     button, select { font: inherit; }
-    button { color: inherit; }
-
     .page { width: min(1050px, calc(100% - 40px)); margin: 0 auto; }
-
     header {
       height: 72px;
       display: flex;
@@ -44,227 +33,52 @@
       justify-content: space-between;
       border-bottom: 1px solid rgb(255 255 255 / 8%);
     }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: #f3f5ef;
-      font-size: 15px;
-      font-weight: 750;
-      letter-spacing: -.025em;
-    }
-
+    .brand { display: flex; align-items: center; gap: 10px; color: #f3f5ef; font-size: 15px; font-weight: 750; }
     .brand-mark {
-      width: 25px;
-      height: 25px;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgb(242 166 90 / 48%);
-      border-radius: 7px;
-      background: rgb(242 166 90 / 12%);
-      color: var(--accent);
-      font-size: 14px;
+      width: 25px; height: 25px; display: grid; place-items: center;
+      border: 1px solid rgb(242 166 90 / 48%); border-radius: 7px;
+      background: rgb(242 166 90 / 12%); color: var(--accent);
     }
-
-    .header-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .online-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 10px rgb(242 166 90 / 45%);
-    }
-
+    .header-label { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
     main { padding: 66px 0 42px; }
-
     .intro { max-width: 650px; margin-bottom: 35px; }
-
-    .eyebrow {
-      margin: 0 0 14px;
-      color: var(--accent);
-      font-size: 11px;
-      font-weight: 750;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(36px, 6vw, 58px);
-      font-weight: 740;
-      letter-spacing: -.065em;
-      line-height: 1;
-    }
-
-    .intro p:last-child {
-      max-width: 510px;
-      margin: 16px 0 0;
-      color: #aeb6aa;
-      font-size: 15px;
-      line-height: 1.65;
-    }
-
-    .section-label {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 12px;
-      margin: 0 0 13px;
-    }
-
-    .section-label h2 { margin: 0; font-size: 14px; font-weight: 680; }
+    .eyebrow { margin: 0 0 14px; color: var(--accent); font-size: 11px; font-weight: 750; letter-spacing: .14em; text-transform: uppercase; }
+    h1 { margin: 0; font-size: clamp(36px, 6vw, 58px); letter-spacing: -.065em; line-height: 1; }
+    .intro-copy { max-width: 510px; margin: 16px 0 0; color: #b9bfba; font-size: 15px; line-height: 1.65; }
+    .section-label { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 13px; }
+    .section-label h2 { margin: 0; font-size: 14px; }
     .section-label span { color: var(--muted); font-size: 11px; }
-
-    .versions {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-    }
-
+    .versions { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
     .version {
-      min-width: 0;
-      min-height: 178px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 17px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: linear-gradient(150deg, rgb(255 255 255 / 3%), transparent 70%), var(--surface);
-      text-align: left;
-      cursor: pointer;
-      transition: border-color .16s ease, background .16s ease, transform .16s ease;
+      min-width: 0; min-height: 178px; display: flex; flex-direction: column; align-items: flex-start;
+      padding: 17px; border: 1px solid var(--line); border-radius: 12px;
+      background: linear-gradient(150deg, rgb(255 255 255 / 4%), transparent 70%), #252a28;
+      text-align: left; cursor: pointer; transition: .16s ease;
     }
-
     .version:hover { transform: translateY(-2px); border-color: #8c765f; }
-
-    .version[aria-pressed="true"] {
-      border-color: #e6a764;
-      background: linear-gradient(145deg, rgb(242 166 90 / 12%), transparent 75%), #2b2926;
-      box-shadow: 0 0 0 1px rgb(242 166 90 / 15%);
-    }
-
-    .version:focus-visible, .launch:focus-visible, select:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 3px;
-    }
-
-    .version-top {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .version-type {
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 680;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-    }
-
-    .selected-check {
-      width: 18px;
-      height: 18px;
-      display: grid;
-      place-items: center;
-      border: 1px solid #3b4738;
-      border-radius: 50%;
-      color: transparent;
-      font-size: 11px;
-    }
-
-    .version[aria-pressed="true"] .selected-check {
-      border-color: var(--accent);
-      background: var(--accent);
-      color: #302216;
-    }
-
-    .version-number {
-      margin: 28px 0 4px;
-      font-size: clamp(25px, 3vw, 34px);
-      font-weight: 720;
-      letter-spacing: -.06em;
-      line-height: 1;
-    }
-
+    .version[aria-pressed="true"] { border-color: #e6a764; background: linear-gradient(145deg, rgb(242 166 90 / 12%), transparent 75%), #302d29; }
+    .version:focus-visible, .launch:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .version-top { width: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .kind { color: var(--muted); font-size: 10px; font-weight: 680; letter-spacing: .09em; text-transform: uppercase; }
+    .check { width: 18px; height: 18px; display: grid; place-items: center; border: 1px solid #59605c; border-radius: 50%; color: transparent; font-size: 11px; }
+    .version[aria-pressed="true"] .check { border-color: var(--accent); background: var(--accent); color: #302216; }
+    .version-number { margin: 28px 0 4px; font-size: clamp(25px, 3vw, 34px); font-weight: 720; letter-spacing: -.06em; line-height: 1; }
     .version-description { margin: 0; color: var(--muted); font-size: 12px; }
-
     .launch-panel {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: center;
-      gap: 26px;
-      margin-top: 20px;
-      padding: 21px 22px;
-      border: 1px solid var(--line);
-      border-radius: 13px;
-      background: #252a28;
+      display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 26px;
+      margin-top: 20px; padding: 21px 22px; border: 1px solid var(--line);
+      border-radius: 13px; background: #252a28;
     }
-
-    .selection-copy { min-width: 0; }
-    .selection-label {
-      display: block;
-      margin-bottom: 5px;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .11em;
-      text-transform: uppercase;
-    }
-
-    .selection-title { margin: 0; font-size: 17px; font-weight: 690; letter-spacing: -.025em; }
+    .selection-label { display: block; margin-bottom: 5px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+    .selection-title { margin: 0; font-size: 17px; font-weight: 690; }
     .selection-description { margin: 5px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
-
-    .launch-actions { display: flex; align-items: center; gap: 11px; }
-
-    .build-select {
-      min-width: 145px;
-      height: 40px;
-      padding: 0 30px 0 12px;
-      border: 1px solid #394335;
-      border-radius: 8px;
-      background: #1b1f1d;
-      color: #e8ebe4;
-      font-size: 12px;
-    }
-
-    .launch {
-      height: 40px;
-      min-width: 137px;
-      padding: 0 16px;
-      border: 1px solid #f5bb7e;
-      border-radius: 8px;
-      background: var(--accent);
-      color: #302216;
-      font-size: 12px;
-      font-weight: 760;
-      cursor: pointer;
-      transition: background .15s ease;
-    }
-
+    .launch-actions { display: flex; align-items: end; gap: 11px; }
+    .build-select { min-width: 145px; height: 40px; padding: 0 12px; border: 1px solid #555c58; border-radius: 8px; background: #1b1f1d; color: #f3f3ef; font-size: 12px; }
+    .launch { height: 40px; min-width: 137px; padding: 0 16px; border: 1px solid #f5bb7e; border-radius: 8px; background: var(--accent); color: #302216; font-size: 12px; font-weight: 760; cursor: pointer; }
     .launch:hover { background: #ffc17f; }
-    .launch:disabled { cursor: wait; opacity: .7; }
     .status { min-height: 18px; margin: 10px 0 0; color: #ffb6a8; font-size: 12px; }
-
-    footer {
-      padding: 18px 0 28px;
-      border-top: 1px solid rgb(255 255 255 / 7%);
-      color: #737b70;
-      font-size: 11px;
-      text-align: center;
-    }
-
+    footer { padding: 18px 0 28px; border-top: 1px solid rgb(255 255 255 / 7%); color: #929894; font-size: 11px; text-align: center; }
     @media (max-width: 760px) {
       .page { width: min(100% - 28px, 600px); }
       main { padding-top: 48px; }
@@ -273,19 +87,13 @@
       .launch-actions { width: 100%; }
       .launch { flex: 1; }
     }
-
     @media (max-width: 420px) {
       .header-label { font-size: 10px; }
-      .intro p:last-child { font-size: 14px; }
       .version { min-height: 155px; padding: 14px; }
       .version-number { margin-top: 23px; }
       .launch-panel { padding: 17px; }
       .launch-actions { flex-wrap: wrap; }
       .build-select, .launch { width: 100%; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
     }
   </style>
 </head>
@@ -293,102 +101,76 @@
   <div class="page">
     <header>
       <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">▦</span>Eaglercraft</a>
-      <span class="header-label"><span class="online-dot" aria-hidden="true"></span>Browser launcher</span>
+      <span class="header-label"><span class="dot" aria-hidden="true"></span>Browser launcher</span>
     </header>
-
     <main>
-      <section class="intro" aria-labelledby="page-title">
+      <section class="intro">
         <p class="eyebrow">Choose your version</p>
-        <h1 id="page-title">Ready when<br>you are.</h1>
-        <p>Pick a release to continue. Classic versions let you choose between JavaScript and WebAssembly before launching.</p>
+        <h1>Ready when<br>you are.</h1>
+        <p class="intro-copy">Pick a release to continue. Classic versions let you choose between JavaScript and WebAssembly before launching.</p>
       </section>
-
       <section aria-labelledby="versions-title">
-        <div class="section-label">
-          <h2 id="versions-title">Available versions</h2>
-          <span>4 releases</span>
-        </div>
+        <div class="section-label"><h2 id="versions-title">Available versions</h2><span>4 releases</span></div>
         <div class="versions" role="group" aria-label="Game versions">
           <button class="version" type="button" data-version="26.3" data-title="Eaglercraft 26.3" data-description="The latest release." aria-pressed="true">
-            <span class="version-top"><span class="version-type">Latest release</span><span class="selected-check" aria-hidden="true">✓</span></span>
-            <span class="version-number">26.3</span>
-            <span class="version-description">Browser edition</span>
+            <span class="version-top"><span class="kind">Latest release</span><span class="check" aria-hidden="true">✓</span></span>
+            <span class="version-number">26.3</span><span class="version-description">Browser edition</span>
           </button>
           <button class="version" type="button" data-version="26.2" data-title="Eaglercraft 26.2" data-description="A previous browser release." aria-pressed="false">
-            <span class="version-top"><span class="version-type">Release</span><span class="selected-check" aria-hidden="true">✓</span></span>
-            <span class="version-number">26.2</span>
-            <span class="version-description">Browser edition</span>
+            <span class="version-top"><span class="kind">Release</span><span class="check" aria-hidden="true">✓</span></span>
+            <span class="version-number">26.2</span><span class="version-description">Browser edition</span>
           </button>
           <button class="version" type="button" data-version="1.12.2" data-title="Eaglercraft 1.12.2" data-description="A classic release. Choose a build to continue." aria-pressed="false">
-            <span class="version-top"><span class="version-type">Classic</span><span class="selected-check" aria-hidden="true">✓</span></span>
-            <span class="version-number">1.12.2</span>
-            <span class="version-description">JavaScript or WebAssembly</span>
+            <span class="version-top"><span class="kind">Classic</span><span class="check" aria-hidden="true">✓</span></span>
+            <span class="version-number">1.12.2</span><span class="version-description">JavaScript or WebAssembly</span>
           </button>
           <button class="version" type="button" data-version="1.8.8" data-title="Eaglercraft 1.8.8" data-description="The classic release. Choose a build to continue." aria-pressed="false">
-            <span class="version-top"><span class="version-type">Classic</span><span class="selected-check" aria-hidden="true">✓</span></span>
-            <span class="version-number">1.8.8</span>
-            <span class="version-description">JavaScript or WebAssembly</span>
+            <span class="version-top"><span class="kind">Classic</span><span class="check" aria-hidden="true">✓</span></span>
+            <span class="version-number">1.8.8</span><span class="version-description">JavaScript or WebAssembly</span>
           </button>
         </div>
       </section>
-
-      <section class="launch-panel" aria-live="polite" aria-label="Selected version">
-        <div class="selection-copy">
+      <section class="launch-panel" aria-live="polite">
+        <div>
           <span class="selection-label">Selected version</span>
           <h2 class="selection-title" id="selection-title">Eaglercraft 26.3</h2>
           <p class="selection-description" id="selection-description">The latest release.</p>
         </div>
         <div class="launch-actions">
-          <label for="build-select" id="build-label" hidden>
-            <span class="selection-label">Build</span>
-            <select class="build-select" id="build-select">
-              <option value="JS">JavaScript</option>
-              <option value="WASM">WebAssembly</option>
-            </select>
+          <label id="build-label" hidden><span class="selection-label">Build</span>
+            <select class="build-select" id="build-select"><option value="JS">JavaScript</option><option value="WASM">WebAssembly</option></select>
           </label>
-          <button class="launch" id="launch" type="button">Launch game <span aria-hidden="true">→</span></button>
+          <button class="launch" id="launch" type="button">Launch game →</button>
         </div>
       </section>
-      <p class="status" id="status" role="status" aria-live="polite"></p>
+      <p class="status" id="status" role="status"></p>
     </main>
-
     <footer>Choose a version to launch it in your browser.</footer>
   </div>
-
   <script>
     (() => {
-      const versionButtons = [...document.querySelectorAll(".version")];
+      const buttons = [...document.querySelectorAll(".version")];
       const title = document.querySelector("#selection-title");
       const description = document.querySelector("#selection-description");
       const buildLabel = document.querySelector("#build-label");
       const buildSelect = document.querySelector("#build-select");
-      const launchButton = document.querySelector("#launch");
+      const launch = document.querySelector("#launch");
       const status = document.querySelector("#status");
-      let selectedVersion = "26.3";
+      let selected = "26.3";
 
-      function selectVersion(button) {
-        versionButtons.forEach((item) => {
-          item.setAttribute("aria-pressed", String(item === button));
-        });
-        selectedVersion = button.dataset.version;
+      buttons.forEach((button) => button.addEventListener("click", () => {
+        buttons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+        selected = button.dataset.version;
         title.textContent = button.dataset.title;
         description.textContent = button.dataset.description;
-
-        const hasBuilds = selectedVersion === "1.8.8" || selectedVersion === "1.12.2";
-        buildLabel.hidden = !hasBuilds;
+        buildLabel.hidden = selected !== "1.8.8" && selected !== "1.12.2";
         status.textContent = "";
-      }
+      }));
 
-      versionButtons.forEach((button) => {
-        button.addEventListener("click", () => selectVersion(button));
-      });
-
-      launchButton.addEventListener("click", () => {
-        const build = buildLabel.hidden ? "" : `-${buildSelect.value}`;
-        const version = `${selectedVersion}${build}`;
+      launch.addEventListener("click", () => {
+        const suffix = buildLabel.hidden ? "" : `-${buildSelect.value}`;
+        const version = `${selected}${suffix}`;
         status.textContent = "";
-        launchButton.disabled = true;
-        launchButton.textContent = "Opening game…";
         window.location.assign(`/api/launch?version=${encodeURIComponent(version)}`);
       });
     })();

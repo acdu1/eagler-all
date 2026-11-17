@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "eagler-launcher",
+  "main": "worker.js",
+  "compatibility_date": "2026-11-17",
+  "route": {
+    "pattern": "eag.afeonbooks.com/*",
+    "zone_name": "afeonbooks.com"
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  }
+}

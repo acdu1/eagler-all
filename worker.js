@@ -96,6 +96,9 @@ function response(message, status) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (!url.pathname.startsWith("/api/")) {
+      return env.ASSETS.fetch(request);
+    }
     if (url.pathname !== "/api/launch") {
       return response("Not found", 404);
     }
